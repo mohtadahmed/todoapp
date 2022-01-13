@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To Do App</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <h1>ToDo App</h1>
 
-
-    <form action="">
-        <div>
-            <label for="title">Todo Title</label>
-            <input type="text" name="title" id="" placeholder="Enter Todo...">
-            <br>
-            <button type="submit">Add</button>
-        </div>
+    <form action="/add" method="post">
+      <div>
+        <label for="title">Todo Title</label>
+        <input type="text" name="title" id="" placeholder="Enter Todo..." />
+        <br />
+        <button type="submit">Add</button>
+      </div>
     </form>
-</body>
 
+    {% for todo in todo_list %}
+    <p>{{ todo.id }} | {{ todo.title }}</p>
+
+    {% if todo.complete==Flase %}
+    <span>Not Complete</span>
+    {% else %}
+    <span>Completed</span>
+
+    {% endif %}
+
+    <a href="/update/{{ todo.id }}">Update</a>
+    <a href="/delete/{{ todo.id }}">Delete</a>
+
+    {% endfor %}
+  </body>
 </html>
